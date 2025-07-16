@@ -24,12 +24,12 @@
       <span class="lang-english" style="display:none;">Here are the names and details of prominent politicians from the Gurjar community, including currently active MPs and MLAs, as well as icons (deceased leaders) of the community.</span>
     </p>
     <!-- Filter Bar -->
-    <div class="category-filter-bar officer-filter-bar" style="margin-bottom: 32px;">
-      <button class="category-pill active" data-type="all"><span class="lang-hindi">सभी</span><span class="lang-english" style="display:none;">All</span></button>
-      <button class="category-pill" data-type="mp"><span class="lang-hindi">सांसद</span><span class="lang-english" style="display:none;">MP</span></button>
-      <button class="category-pill" data-type="mla"><span class="lang-hindi">विधायक</span><span class="lang-english" style="display:none;">MLA</span></button>
-      <button class="category-pill" data-type="minister"><span class="lang-hindi">मंत्री</span><span class="lang-english" style="display:none;">Minister</span></button>
-      <button class="category-pill" data-type="icon"><span class="lang-hindi">आइकॉन</span><span class="lang-english" style="display:none;">Icon</span></button>
+    <div class="category-filter-bar" id="politicianFilterBar">
+      <button class="category-pill active" data-type="all"><span class="lang-hindi">सभी</span><span class="lang-english" style="display:none;">All</span> <span class="filter-count"></span></button>
+      <button class="category-pill" data-type="mp"><span class="lang-hindi">सांसद</span><span class="lang-english" style="display:none;">MP</span> <span class="filter-count"></span></button>
+      <button class="category-pill" data-type="mla"><span class="lang-hindi">विधायक</span><span class="lang-english" style="display:none;">MLA</span> <span class="filter-count"></span></button>
+      <button class="category-pill" data-type="minister"><span class="lang-hindi">मंत्री</span><span class="lang-english" style="display:none;">Minister</span> <span class="filter-count"></span></button>
+      <button class="category-pill" data-type="icon"><span class="lang-hindi">आइकॉन</span><span class="lang-english" style="display:none;">Icon</span> <span class="filter-count"></span></button>
     </div>
     <div class="ips-grid officer-grid">
       <!-- 1: Krishan Pal Gurjar (Minister, MP) -->
@@ -317,20 +317,48 @@
   <div id="footer"></div>
   <script src="common.js"></script>
   <script>
-    // Politician filter bar functionality (same as IPS page)
-    document.querySelectorAll('.officer-filter-bar .category-pill').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.officer-filter-bar .category-pill').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        var type = btn.getAttribute('data-type');
-        document.querySelectorAll('.officer-grid .ips-card').forEach(function(card) {
-          if(type === 'all' || card.getAttribute('data-type').includes(type)) {
+    // Politician filter logic with renumbering and count
+    document.addEventListener('DOMContentLoaded', function() {
+      const pills = document.querySelectorAll('.category-pill');
+      const allCards = Array.from(document.querySelectorAll('.ips-card'));
+      function updateCounts() {
+        const counts = {
+          all: allCards.length,
+          mp: allCards.filter(card => card.getAttribute('data-type').includes('mp')).length,
+          mla: allCards.filter(card => card.getAttribute('data-type').includes('mla')).length,
+          minister: allCards.filter(card => card.getAttribute('data-type').includes('minister')).length,
+          icon: allCards.filter(card => card.getAttribute('data-type').includes('icon')).length
+        };
+        pills.forEach(btn => {
+          const type = btn.getAttribute('data-type');
+          btn.querySelector('.filter-count').textContent = `(${counts[type] || 0})`;
+        });
+      }
+      function filterAndRenumber(type) {
+        let visible = [];
+        allCards.forEach(card => {
+          if (type === 'all' || card.getAttribute('data-type').includes(type)) {
             card.style.display = '';
+            visible.push(card);
           } else {
             card.style.display = 'none';
           }
         });
+        visible.forEach((card, i) => {
+          card.querySelector('.card-number-badge').textContent = i + 1;
+        });
+      }
+      pills.forEach(pill => {
+        pill.addEventListener('click', function() {
+          pills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          filterAndRenumber(pill.getAttribute('data-type'));
+          updateCounts();
+        });
       });
+      // Initial
+      filterAndRenumber('all');
+      updateCounts();
     });
   </script>
 </body>

@@ -25,34 +25,41 @@
       <span class="lang-hindi">यहाँ गुर्जर समुदाय से संबंधित कुछ प्रमुख खिलाड़ियों के नाम और उनके विवरण दिए गए हैं।</span>
       <span class="lang-english" style="display:none;">Here are some prominent sports personalities from the Gurjar community.</span>
     </p>
-    <div class="category-filter-bar" style="display:flex;justify-content:center;gap:12px;margin-bottom:28px;flex-wrap:wrap;">
+    <div class="category-filter-bar">
       <button class="category-pill active" data-category="all">
         <span class="lang-hindi">सभी</span>
         <span class="lang-english" style="display:none;">All</span>
+        <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-category="cricket">
         <span class="lang-hindi">क्रिकेट</span>
         <span class="lang-english" style="display:none;">Cricket</span>
+        <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-category="wrestling">
         <span class="lang-hindi">कुश्ती</span>
         <span class="lang-english" style="display:none;">Wrestling</span>
+        <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-category="para">
         <span class="lang-hindi">पैरा-एथलीट</span>
         <span class="lang-english" style="display:none;">Para-athlete</span>
+        <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-category="fencing">
         <span class="lang-hindi">तलवारबाजी</span>
         <span class="lang-english" style="display:none;">Fencing</span>
+        <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-category="divyang">
         <span class="lang-hindi">दिव्यांग क्रिकेट</span>
         <span class="lang-english" style="display:none;">Divyang Cricket</span>
+        <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-category="wushu">
         <span class="lang-hindi">वूशु</span>
         <span class="lang-english" style="display:none;">Wushu</span>
+        <span class="filter-count"></span>
       </button>
     </div>
     <div class="ips-grid">
@@ -241,36 +248,50 @@
   <div id="footer"></div>
   <script src="common.js"></script>
   <script>
-    // Category filter logic
+    // Category filter logic with renumbering and count
     document.addEventListener('DOMContentLoaded', function() {
       const pills = document.querySelectorAll('.category-pill');
-      const cards = document.querySelectorAll('.ips-card');
+      const allCards = Array.from(document.querySelectorAll('.ips-card'));
+      function updateCounts() {
+        const counts = {
+          all: allCards.length,
+          cricket: allCards.filter(card => card.getAttribute('data-category') === 'cricket').length,
+          wrestling: allCards.filter(card => card.getAttribute('data-category') === 'wrestling').length,
+          para: allCards.filter(card => card.getAttribute('data-category') === 'para').length,
+          fencing: allCards.filter(card => card.getAttribute('data-category') === 'fencing').length,
+          divyang: allCards.filter(card => card.getAttribute('data-category') === 'divyang').length,
+          wushu: allCards.filter(card => card.getAttribute('data-category') === 'wushu').length
+        };
+        pills.forEach(btn => {
+          const cat = btn.getAttribute('data-category');
+          btn.querySelector('.filter-count').textContent = `(${counts[cat] || 0})`;
+        });
+      }
+      function filterAndRenumber(cat) {
+        let visible = [];
+        allCards.forEach(card => {
+          if (cat === 'all' || card.getAttribute('data-category') === cat) {
+            card.style.display = '';
+            visible.push(card);
+          } else {
+            card.style.display = 'none';
+          }
+        });
+        visible.forEach((card, i) => {
+          card.querySelector('.card-number-badge').textContent = i + 1;
+        });
+      }
       pills.forEach(pill => {
         pill.addEventListener('click', function() {
           pills.forEach(p => p.classList.remove('active'));
-          this.classList.add('active');
-          const cat = this.getAttribute('data-category');
-          cards.forEach(card => {
-            if (cat === 'all' || card.getAttribute('data-category') === cat) {
-              card.style.display = '';
-            } else {
-              card.style.display = 'none';
-            }
-          });
+          pill.classList.add('active');
+          filterAndRenumber(pill.getAttribute('data-category'));
+          updateCounts();
         });
       });
-      // Language switcher support for pills
-      function updatePillLang() {
-        const isHindi = document.querySelector('.lang-hindi') && getComputedStyle(document.querySelector('.lang-hindi')).display !== 'none';
-        pills.forEach(pill => {
-          pill.querySelector('.lang-hindi').style.display = isHindi ? '' : 'none';
-          pill.querySelector('.lang-english').style.display = isHindi ? 'none' : '';
-        });
-      }
-      // Listen for language switch
-      document.getElementById('btn-hindi')?.addEventListener('click', updatePillLang);
-      document.getElementById('btn-english')?.addEventListener('click', updatePillLang);
-      updatePillLang();
+      // Initial
+      filterAndRenumber('all');
+      updateCounts();
     });
   </script>
 </body>
