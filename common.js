@@ -19,6 +19,8 @@ function initHeaderScripts() {
     // Language Switcher Functionality
     const btnHindi = document.getElementById('btn-hindi');
     const btnEnglish = document.getElementById('btn-english');
+    const btnHindiMobile = document.getElementById('btn-hindi-mobile');
+    const btnEnglishMobile = document.getElementById('btn-english-mobile');
     function setLanguage(lang) {
         if (btnHindi && btnEnglish) {
             if(lang === 'hindi') {
@@ -27,6 +29,15 @@ function initHeaderScripts() {
             } else {
                 btnHindi.classList.remove('active');
                 btnEnglish.classList.add('active');
+            }
+        }
+        if (btnHindiMobile && btnEnglishMobile) {
+            if(lang === 'hindi') {
+                btnHindiMobile.classList.add('active');
+                btnEnglishMobile.classList.remove('active');
+            } else {
+                btnHindiMobile.classList.remove('active');
+                btnEnglishMobile.classList.add('active');
             }
         }
         document.querySelectorAll('.lang-hindi').forEach(el => {
@@ -41,7 +52,10 @@ function initHeaderScripts() {
         btnHindi.addEventListener('click', () => setLanguage('hindi'));
         btnEnglish.addEventListener('click', () => setLanguage('english'));
     }
-
+    if (btnHindiMobile && btnEnglishMobile) {
+        btnHindiMobile.addEventListener('click', () => setLanguage('hindi'));
+        btnEnglishMobile.addEventListener('click', () => setLanguage('english'));
+    }
     // Nav active state logic
     let currentNavIndex = 0; // Default to first menu item
     function updateNavActive() {
@@ -49,6 +63,12 @@ function initHeaderScripts() {
         const navItems = document.querySelectorAll('nav ul li');
         if (navItems[currentNavIndex]) {
             navItems[currentNavIndex].querySelectorAll('a').forEach(link => link.classList.add('active'));
+        }
+        // Also update mobile nav
+        document.querySelectorAll('.mobile-nav-links ul li a').forEach(link => link.classList.remove('active'));
+        const mobileNavItems = document.querySelectorAll('.mobile-nav-links ul li');
+        if (mobileNavItems[currentNavIndex]) {
+            mobileNavItems[currentNavIndex].querySelectorAll('a').forEach(link => link.classList.add('active'));
         }
     }
     document.querySelectorAll('nav ul li').forEach((li, idx) => {
@@ -60,29 +80,32 @@ function initHeaderScripts() {
             });
         });
     });
+    // Mobile nav active
+    document.querySelectorAll('.mobile-nav-links ul li').forEach((li, idx) => {
+        li.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.style.display === 'none') return;
+                currentNavIndex = idx;
+                updateNavActive();
+                // Close menu on click
+                document.getElementById('menu-overlay').classList.remove('open');
+            });
+        });
+    });
     updateNavActive();
     setLanguage('english'); // Set default language to English on page load
-
     // Hamburger menu functionality
     const hamburger = document.getElementById('hamburger');
     const navUl = document.querySelector('nav ul');
     const menuOverlay = document.getElementById('menu-overlay');
     if (hamburger && navUl && menuOverlay) {
         hamburger.addEventListener('click', function() {
-            navUl.classList.toggle('open');
             menuOverlay.classList.toggle('open');
         });
-        document.querySelectorAll('nav ul li a').forEach(link => {
-            link.addEventListener('click', function() {
-                if(window.innerWidth <= 768) {
-                    navUl.classList.remove('open');
-                    menuOverlay.classList.remove('open');
-                }
-            });
-        });
-        menuOverlay.addEventListener('click', function() {
-            navUl.classList.remove('open');
-            menuOverlay.classList.remove('open');
+        menuOverlay.addEventListener('click', function(e) {
+            if (e.target === menuOverlay) {
+                menuOverlay.classList.remove('open');
+            }
         });
     }
 }
