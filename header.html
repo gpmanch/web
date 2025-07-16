@@ -1,13 +1,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <div class="top-bar">
   <div class="container top-bar-content">
-    <div class="top-bar-left">
+    <div class="top-bar-left hide-on-mobile">
       <i class="fa fa-envelope"></i> <span>contact@gurjarpragatimanch.org</span>
     </div>
-    <div class="top-bar-right">
+    <div class="top-bar-right scrollable-menu">
       <a href="gotr.html" class="top-link">Gotr</a>
       <a href="ips.html" class="top-link">IPS</a>
+      <a href="politicians.html" class="top-link"><span class="lang-hindi">राजनेता</span><span class="lang-english" style="display:none;">Politicians</span></a>
       <a href="sports.html" class="top-link">Sports</a>
+      <a href="actor-influencer.html" class="top-link">Abhineta/Influencer</a>
     </div>
   </div>
 </div>
@@ -15,6 +17,10 @@
   <div class="container header-container">
     <div class="logo">
       <a href="index.html"><img src="logo-b.png" alt="Gurjar Pragati Manch Logo"></a>
+    </div>
+    <div class="mobile-language-switch pill-switch show-on-mobile">
+      <button id="btn-english-mobile">EN</button>
+      <button class="active hindi" id="btn-hindi-mobile">HI</button>
     </div>
     <nav id="main-nav">
       <ul>
@@ -26,7 +32,7 @@
         <li><a href="#contact" class="hindi lang-hindi">संपर्क</a><a href="#contact" class="lang-english" style="display:none;">Contact</a></li>
       </ul>
     </nav>
-    <div class="header-actions">
+    <div class="header-actions hide-on-mobile">
       <div class="social-icons">
         <a href="https://www.facebook.com/gpmanch" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i></a>
         <a href="https://x.com/gpmanch" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-twitter"></i></a>
@@ -37,10 +43,31 @@
         <button id="btn-english">English</button>
         <button class="active hindi" id="btn-hindi">हिंदी</button>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="menu-overlay" id="menu-overlay">
+    <div class="mobile-menu-content">
+      <nav class="mobile-nav-links">
+        <ul>
+          <li><a href="#" class="hindi lang-hindi active">होम</a><a href="#" class="lang-english active" style="display:none;">Home</a></li>
+          <li><a href="#about" class="hindi lang-hindi">हमारे बारे में</a><a href="#about" class="lang-english" style="display:none;">About Us</a></li>
+          <li><a href="#history" class="hindi lang-hindi">इतिहास</a><a href="#history" class="lang-english" style="display:none;">History</a></li>
+          <li><a href="#youth" class="hindi lang-hindi">युवा</a><a href="#youth" class="lang-english" style="display:none;">Youth</a></li>
+          <li><a href="#latest-videos" class="hindi lang-hindi">वीडियो</a><a href="#latest-videos" class="lang-english" style="display:none;">Videos</a></li>
+          <li><a href="#contact" class="hindi lang-hindi">संपर्क</a><a href="#contact" class="lang-english" style="display:none;">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-menu-bottom">
+        <div class="mobile-social-icons">
+          <a href="https://www.facebook.com/gpmanch" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/gpmanch" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/gpmanch/" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@gpmanch" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="menu-overlay" id="menu-overlay"></div>
 </header> 
