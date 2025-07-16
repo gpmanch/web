@@ -26,19 +26,19 @@
     <!-- Filter Bar Start -->
     <div class="category-filter-bar" id="awardFilterBar">
       <button class="category-pill active" data-filter="all">
-        <span class="lang-hindi">सभी</span><span class="lang-english" style="display:none;">All</span>
+        <span class="lang-hindi">सभी</span><span class="lang-english" style="display:none;">All</span> <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-filter="civilian">
-        <span class="lang-hindi">नागरिक सम्मान</span><span class="lang-english" style="display:none;">Civilian</span>
+        <span class="lang-hindi">नागरिक सम्मान</span><span class="lang-english" style="display:none;">Civilian</span> <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-filter="sports">
-        <span class="lang-hindi">खेल</span><span class="lang-english" style="display:none;">Sports</span>
+        <span class="lang-hindi">खेल</span><span class="lang-english" style="display:none;">Sports</span> <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-filter="gallantry">
-        <span class="lang-hindi">वीरता</span><span class="lang-english" style="display:none;">Gallantry</span>
+        <span class="lang-hindi">वीरता</span><span class="lang-english" style="display:none;">Gallantry</span> <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-filter="other">
-        <span class="lang-hindi">अन्य</span><span class="lang-english" style="display:none;">Other</span>
+        <span class="lang-hindi">अन्य</span><span class="lang-english" style="display:none;">Other</span> <span class="filter-count"></span>
       </button>
     </div>
     <!-- Filter Bar End -->
@@ -133,7 +133,21 @@
         type: 'other'
       }
     ];
-    // Render cards with continuous numbering
+    // Render cards with continuous numbering and update filter counts
+    function updateAwardFilterCounts() {
+      const counts = {
+        all: awardees.length,
+        civilian: awardees.filter(a => a.type === 'civilian').length,
+        sports: awardees.filter(a => a.type === 'sports').length,
+        gallantry: awardees.filter(a => a.type === 'gallantry').length,
+        other: awardees.filter(a => a.type === 'other').length
+      };
+      document.querySelectorAll('#awardFilterBar .category-pill').forEach(btn => {
+        const filter = btn.getAttribute('data-filter');
+        const count = counts[filter] || 0;
+        btn.querySelector('.filter-count').textContent = `(${count})`;
+      });
+    }
     function renderAwardees(filter) {
       const grid = document.getElementById('awardGrid');
       let filtered = awardees;
@@ -156,6 +170,7 @@
           </div>
         </div>
       `).join('');
+      updateAwardFilterCounts();
     }
     // Filter bar logic
     document.getElementById('awardFilterBar').addEventListener('click', function(e) {

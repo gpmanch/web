@@ -28,13 +28,13 @@
     <!-- Filter Bar Start -->
     <div class="category-filter-bar" id="actorInfluencerFilterBar">
       <button class="category-pill active" data-filter="all">
-        <span class="lang-hindi">सभी</span><span class="lang-english" style="display:none;">All</span>
+        <span class="lang-hindi">सभी</span><span class="lang-english" style="display:none;">All</span> <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-filter="actor">
-        <span class="lang-hindi">अभिनेता</span><span class="lang-english" style="display:none;">Actors</span>
+        <span class="lang-hindi">अभिनेता</span><span class="lang-english" style="display:none;">Actors</span> <span class="filter-count"></span>
       </button>
       <button class="category-pill" data-filter="influencer">
-        <span class="lang-hindi">इन्फ्लुएंसर</span><span class="lang-english" style="display:none;">Influencers</span>
+        <span class="lang-hindi">इन्फ्लुएंसर</span><span class="lang-english" style="display:none;">Influencers</span> <span class="filter-count"></span>
       </button>
     </div>
     <!-- Filter Bar End -->
@@ -224,24 +224,48 @@
   <div id="footer"></div>
   <script src="common.js"></script>
   <script>
-// Actor/Influencer Filter Logic
+// Actor/Influencer Filter Logic with renumbering and count
 const filterBar = document.getElementById('actorInfluencerFilterBar');
 const grid = document.getElementById('actorInfluencerGrid');
+const allCards = Array.from(grid.querySelectorAll('.ips-card'));
+function updateCounts() {
+  const counts = {
+    all: allCards.length,
+    actor: allCards.filter(card => card.getAttribute('data-type') === 'actor').length,
+    influencer: allCards.filter(card => card.getAttribute('data-type') === 'influencer').length
+  };
+  filterBar.querySelectorAll('.category-pill').forEach(btn => {
+    const type = btn.getAttribute('data-filter');
+    btn.querySelector('.filter-count').textContent = `(${counts[type] || 0})`;
+  });
+}
+function filterAndRenumber(type) {
+  let visible = [];
+  allCards.forEach(card => {
+    if (type === 'all' || card.getAttribute('data-type') === type) {
+      card.style.display = '';
+      visible.push(card);
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  visible.forEach((card, i) => {
+    card.querySelector('.card-number-badge').textContent = i + 1;
+  });
+}
 filterBar.addEventListener('click', function(e) {
   if (e.target.closest('button')) {
     const btn = e.target.closest('button');
     filterBar.querySelectorAll('.category-pill').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const filter = btn.getAttribute('data-filter');
-    grid.querySelectorAll('.ips-card').forEach(card => {
-      if (filter === 'all' || card.getAttribute('data-type') === filter) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
-    });
+    filterAndRenumber(filter);
+    updateCounts();
   }
 });
+// Initial
+filterAndRenumber('all');
+updateCounts();
 </script>
 </body>
 </html> 
