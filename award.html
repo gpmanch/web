@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>गुर्जर पुरस्कार विजेता | Gurjar Awardees</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="गुर्जर समाज के प्रमुख पुरस्कार विजेताओं की सूची। Gurjar Samaj Awardees List, Achievements, National, Sports, Gallantry, Other Awards.">
+  <meta name="keywords" content="गुर्जर, Gurjar, Award, सम्मान, समाज, पुरस्कार, Achievements, Samman, Samaj, India">
+</head>
+<body>
+  <div id="header"></div>
+  <section class="hero-section">
+    <span class="lang-hindi">गुर्जर समाज के पुरस्कार विजेता</span>
+    <span class="lang-english" style="display:none;">Awardees of Gurjar Samaj</span>
+  </section>
+  <div class="container">
+    <h1 class="page-title" style="text-align:center; margin-bottom: 16px;">
+      <span class="lang-hindi">गुर्जर पुरस्कार विजेता</span>
+      <span class="lang-english" style="display:none;">Gurjar Awardees</span>
+    </h1>
+    <p class="subtitle" style="text-align:center; color:var(--gray-text); margin-bottom: 32px;">
+      <span class="lang-hindi">यहाँ गुर्जर समुदाय से संबंधित उन प्रमुख व्यक्तियों के नाम और उनके विवरण दिए गए हैं, जिन्हें विभिन्न सरकारी पुरस्कारों से सम्मानित किया गया है या जिन्होंने खेलों में उत्कृष्ट प्रदर्शन किया है।</span>
+      <span class="lang-english" style="display:none;">Here are some prominent Gurjar personalities who have been honored with various government awards or have excelled in sports.</span>
+    </p>
+    <!-- Filter Bar Start -->
+    <div class="category-filter-bar" id="awardFilterBar">
+      <button class="category-pill active" data-filter="all">
+        <span class="lang-hindi">सभी</span><span class="lang-english" style="display:none;">All</span>
+      </button>
+      <button class="category-pill" data-filter="civilian">
+        <span class="lang-hindi">नागरिक सम्मान</span><span class="lang-english" style="display:none;">Civilian</span>
+      </button>
+      <button class="category-pill" data-filter="sports">
+        <span class="lang-hindi">खेल</span><span class="lang-english" style="display:none;">Sports</span>
+      </button>
+      <button class="category-pill" data-filter="gallantry">
+        <span class="lang-hindi">वीरता</span><span class="lang-english" style="display:none;">Gallantry</span>
+      </button>
+      <button class="category-pill" data-filter="other">
+        <span class="lang-hindi">अन्य</span><span class="lang-english" style="display:none;">Other</span>
+      </button>
+    </div>
+    <!-- Filter Bar End -->
+    <div class="ips-grid" id="awardGrid">
+      <!-- Cards will be injected by JS for numbering/filtering -->
+    </div>
+  </div>
+  <div id="footer"></div>
+  <script src="common.js"></script>
+  <script>
+    // Awardee data (bilingual, with type)
+    const awardees = [
+      // नागरिक सम्मान (Civilian)
+      {
+        name_hi: 'गोपालदास नीरज', name_en: 'Gopaldas Neeraj',
+        desc_hi: 'प्रसिद्ध हिंदी कवि और गीतकार।', desc_en: 'Famous Hindi poet and lyricist.',
+        award_hi: 'पद्म श्री (1991), पद्म भूषण (2007)', award_en: 'Padma Shri (1991), Padma Bhushan (2007)',
+        img: 'https://placehold.co/150x150/007bff/ffffff?text=गोपालदास+नीरज',
+        type: 'civilian'
+      },
+      {
+        name_hi: 'मियाँ बशीर अहमद', name_en: 'Mian Bashir Ahmed',
+        desc_hi: 'जम्मू-कश्मीर से प्रमुख गुर्जर नेता और सूफी संत, समाज सेवा में योगदान।', desc_en: 'Prominent Gurjar leader and Sufi saint from J&K, contributed to social service.',
+        award_hi: 'पद्म भूषण (2008)', award_en: 'Padma Bhushan (2008)',
+        img: 'https://placehold.co/150x150/28a745/ffffff?text=मियाँ+बशीर+अहमद',
+        type: 'civilian'
+      },
+      {
+        name_hi: 'ओमप्रकाश गांधी', name_en: 'Omprakash Gandhi',
+        desc_hi: 'देवधर गुरुकुल के संस्थापक, शिक्षा और समाज सेवा में योगदान।', desc_en: 'Founder of Devdhar Gurukul, contributed to education and social service.',
+        award_hi: 'पद्म श्री', award_en: 'Padma Shri',
+        img: 'https://placehold.co/150x150/ffc107/333333?text=ओमप्रकाश+गांधी',
+        type: 'civilian'
+      },
+      // खेल (Sports)
+      {
+        name_hi: 'सुंदर सिंह गुर्जर', name_en: 'Sundar Singh Gurjar',
+        desc_hi: 'पैरा एथलीट (भाला फेंक), विश्व रिकॉर्ड धारक और एशियाई पैरा गेम्स में स्वर्ण पदक विजेता।', desc_en: 'Para athlete (javelin), world record holder and Asian Para Games gold medalist.',
+        award_hi: 'अर्जुन पुरस्कार (2019)', award_en: 'Arjuna Award (2019)',
+        img: 'https://placehold.co/150x150/007bff/ffffff?text=सुंदर+सिंह+गुर्जर',
+        type: 'sports'
+      },
+      {
+        name_hi: 'महेंद्र गुर्जर', name_en: 'Mahendra Gurjar',
+        desc_hi: 'F42 भाला फेंक और लंबी कूद में स्वर्ण पदक विजेता (नॉटविल वर्ल्ड पैरा एथलेटिक्स ग्रांड प्रिक्स)।', desc_en: 'Gold medalist in F42 javelin and long jump (Nottwil World Para Athletics Grand Prix).',
+        award_hi: 'पैरा एथलेटिक्स में विश्व रिकॉर्ड', award_en: 'World Record in Para Athletics',
+        img: 'https://placehold.co/150x150/28a745/ffffff?text=महेंद्र+गुर्जर',
+        type: 'sports'
+      },
+      // वीरता (Gallantry)
+      {
+        name_hi: 'कमल राम', name_en: 'Kamal Ram',
+        desc_hi: 'द्वितीय विश्व युद्ध में वीरता के लिए सर्वोच्च ब्रिटिश और कॉमनवेल्थ पुरस्कार प्राप्तकर्ता।', desc_en: 'Victoria Cross recipient for gallantry in WWII.',
+        award_hi: 'विक्टोरिया क्रॉस', award_en: 'Victoria Cross',
+        img: 'https://placehold.co/150x150/007bff/ffffff?text=कमल+राम',
+        type: 'gallantry'
+      },
+      {
+        name_hi: 'धन सिंह गुर्जर', name_en: 'Dhan Singh Gurjar',
+        desc_hi: 'मेरठ में ब्रिटिश सेना के खिलाफ विद्रोह का नेतृत्व किया। (यह एक वीरतापूर्ण कार्य है, हालांकि विशिष्ट सरकारी पुरस्कार का उल्लेख नहीं है)', desc_en: 'Led the revolt against British in Meerut (heroic act, not a specific government award).',
+        award_hi: '1857 के स्वतंत्रता संग्राम के नायक', award_en: 'Hero of 1857 Freedom Struggle',
+        img: 'https://placehold.co/150x150/28a745/ffffff?text=धन+सिंह+गुर्जर',
+        type: 'gallantry'
+      },
+      {
+        name_hi: 'कुलदीप सिंह चांदपुरी', name_en: 'Kuldip Singh Chandpuri',
+        desc_hi: 'लोंगेवाला के युद्ध में वीरता के लिए सम्मानित भारतीय सेना के सेवानिवृत्त अधिकारी।', desc_en: 'Indian Army officer honored for gallantry at Battle of Longewala.',
+        award_hi: 'महावीर चक्र', award_en: 'Maha Vir Chakra',
+        img: 'https://placehold.co/150x150/ffc107/333333?text=कुलदीप+सिंह+चांदपुरी',
+        type: 'gallantry'
+      },
+      {
+        name_hi: 'घनश्याम गुर्जर (शहीद)', name_en: 'Ghanshyam Gurjar (Martyr)',
+        desc_hi: 'श्रीनगर में आतंकवादी हमले में शहीद हुए सशस्त्र सीमा बल के जवान।', desc_en: 'Martyred SSB jawan in Srinagar terror attack.',
+        award_hi: 'राजकीय सम्मान के साथ अंतिम संस्कार', award_en: 'State Honors at Funeral',
+        img: 'https://placehold.co/150x150/dc3545/ffffff?text=घनश्याम+गुर्जर',
+        type: 'gallantry'
+      },
+      // अन्य (Other)
+      {
+        name_hi: 'जावेद राही', name_en: 'Javaid Rahi',
+        desc_hi: 'गुजरी/गोजरी, उर्दू और अंग्रेजी में 12 पुस्तकें लिखीं, गुर्जर और बकरवाल समुदायों के इतिहास, संस्कृति और साहित्य पर 300+ पुस्तकों/पत्रिकाओं का संपादन किया।', desc_en: 'Authored 12 books in Gojri/Urdu/English, edited 300+ books/journals on Gurjar/Bakarwal history, culture, literature.',
+        award_hi: 'गुर्जर शोधकर्ता और लेखक', award_en: 'Gurjar Researcher & Author',
+        img: 'https://placehold.co/150x150/007bff/ffffff?text=जावेद+राही',
+        type: 'other'
+      },
+      {
+        name_hi: 'बी. आर. गुर्जर', name_en: 'B. R. Gurjar',
+        desc_hi: 'आईआईटी रुड़की से संबंधित, पर्यावरण उत्कृष्टता पुरस्कार और राष्ट्रीय डिजाइन पुरस्कार प्राप्तकर्ता।', desc_en: 'IIT Roorkee, recipient of Environmental Excellence & National Design Awards.',
+        award_hi: 'पर्यावरण इंजीनियरिंग में विशेषज्ञ', award_en: 'Expert in Environmental Engineering',
+        img: 'https://placehold.co/150x150/28a745/ffffff?text=बी.+आर.+गुर्जर',
+        type: 'other'
+      }
+    ];
+    // Render cards with continuous numbering
+    function renderAwardees(filter) {
+      const grid = document.getElementById('awardGrid');
+      let filtered = awardees;
+      if (filter && filter !== 'all') filtered = awardees.filter(a => a.type === filter);
+      grid.innerHTML = filtered.map((a, i) => `
+        <div class="ips-card" data-type="${a.type}">
+          <div class="card-number-badge">${i+1}</div>
+          <img class="ips-avatar" src="${a.img}" alt="${a.name_hi} / ${a.name_en}">
+          <h2>
+            <span class="lang-hindi">${a.name_hi}</span>
+            <span class="lang-english" style="display:none;">${a.name_en}</span>
+          </h2>
+          <p>
+            <span class="lang-hindi"><b>पुरस्कार/योगदान:</b> ${a.award_hi}</span>
+            <span class="lang-english" style="display:none;"><b>Award/Contribution:</b> ${a.award_en}</span>
+          </p>
+          <div class="desc">
+            <span class="lang-hindi">${a.desc_hi}</span>
+            <span class="lang-english" style="display:none;">${a.desc_en}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+    // Filter bar logic
+    document.getElementById('awardFilterBar').addEventListener('click', function(e) {
+      if (e.target.closest('.category-pill')) {
+        const btn = e.target.closest('.category-pill');
+        document.querySelectorAll('#awardFilterBar .category-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderAwardees(btn.getAttribute('data-filter'));
+      }
+    });
+    // Initial render
+    renderAwardees('all');
+  </script>
+</body>
+</html> 
