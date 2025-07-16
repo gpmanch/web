@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gurjar Pragati Manch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --saffron: #FFCA3C;
+            --navy-blue: #002352;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--navy-blue);
+            line-height: 1.6;
+        }
+        
+        .hindi {
+            font-family: 'Noto Sans Devanagari', 'Arial', sans-serif;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--navy-blue);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .header-top {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .logo-text span {
+            color: var(--saffron);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--saffron);
+        }
+        
+        nav ul li a.active {
+            color: var(--saffron);
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            margin-left: 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--saffron);
+        }
+        
+        .language-switch {
+            margin-left: 20px;
+        }
+        
+        .language-switch button {
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .language-switch button.active {
+            color: var(--saffron);
+            text-decoration: underline;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 35, 82, 0.7), rgba(0, 35, 82, 0.7)), 
+                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--saffron);
+            color: var(--navy-blue);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--navy-blue);
+            transform: translateY(-3px);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card i {
+            font-size: 3rem;
+            color: var(--saffron);
+            margin-bottom: 20px;
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--navy-blue);
+        }
+        
+        /* Team Section */
+        .team {
+            background-color: #f9f9f9;
+        }
+        
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--saffron);
+            margin-bottom: 20px;
+        }
+        
+        .team-member h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--navy-blue);
+        }
+        
+        .team-member p {
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* History Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--saffron);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--white);
+            border: 4px solid var(--saffron);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--saffron);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--saffron);
+        }
+        
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--saffron);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--saffron) transparent transparent;
+        }
+        
+        .right::after {
+            left: -16px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--white);
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Youth Empowerment */
+        .initiatives {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .initiative {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .initiative img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .initiative-content {
+            padding: 20px;
+        }
+        
+        .initiative h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--navy-blue);
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: #f9f9f9;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--navy-blue);
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info i {
+            color: var(--saffron);
+            margin-right: 10px;
+            width: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .contact-form button {
+            background-color: var(--saffron);
+            color: var(--navy-blue);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .contact-form button:hover {
+            background-color: var(--navy-blue);
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--saffron);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--saffron);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--saffron);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 15px 0;
+            }
+            .header-top {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .hamburger {
+                display: block;
+                background: none;
+                border: none;
+                cursor: pointer;
+                width: 40px;
+                height: 40px;
+                flex-shrink: 0;
+                margin-left: auto;
+                z-index: 1101;
+            }
+            .hamburger span {
+                display: block;
+                width: 100%;
+                height: 4px;
+                background: var(--saffron);
+                margin: 7px 0;
+                border-radius: 2px;
+                transition: 0.3s;
+            }
+            nav {
+                width: auto;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                background: var(--navy-blue);
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 260px;
+                padding: 40px 0 10px 0;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.08);
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+                z-index: 1200;
+                display: flex;
+                visibility: hidden;
+            }
+            nav ul.open {
+                transform: translateX(0);
+                visibility: visible;
+            }
+            nav ul li {
+                margin: 0 0 15px 20px;
+            }
+            .social-icons, .language-switch {
+                margin-top: 10px;
+            }
+            .header-container {
+                position: relative;
+            }
+            .menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0,0,0,0.3);
+                z-index: 1199;
+                transition: opacity 0.3s;
+                opacity: 0;
+            }
+            .menu-overlay.open {
+                display: block;
+                opacity: 1;
+            }
+            .header-actions {
+                justify-content: center;
+                width: 100%;
+            }
+            .timeline {
+                margin-left: 0;
+            }
+            .timeline::after {
+                left: 20px;
+            }
+            .timeline-container {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 20px;
+                margin-bottom: 30px;
+            }
+            .timeline-container.left,
+            .timeline-container.right {
+                left: 0;
+            }
+            .timeline-container::before {
+                left: 40px;
+                border: medium solid var(--saffron);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--saffron) transparent transparent;
+            }
+            .timeline-container.right::before {
+                left: 40px;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--saffron) transparent transparent;
+            }
+            .timeline-container::after {
+                left: 12px;
+            }
+        }
+        @media screen and (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+            nav ul {
+                display: flex !important;
+                position: static;
+                background: none;
+                flex-direction: row;
+                align-items: center;
+                padding: 0;
+            }
+        }
+        .header-actions {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+        }
+        .instagram-reels-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .instagram-reels-row blockquote {
+            flex: 1 1 320px;
+            max-width: 350px;
+            min-width: 220px;
+            width: 100%;
+        }
+        @media (max-width: 900px) {
+            .instagram-reels-row blockquote {
+                flex-basis: 45%;
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 600px) {
+            .instagram-reels-row blockquote {
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+        }
+        /* Anangpur Popup Modal Styles */
+        .anangpur-modal {
+          position: fixed;
+          z-index: 2000;
+          left: 0; top: 0;
+          width: 100vw; height: 100vh;
+          background: rgba(0,0,0,0.45);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        .anangpur-modal-content {
+          background: url('https://staticimg.amarujala.com/assets/images/2021/08/25/b-al-a_1629912061.jpeg?w=1200') center center/cover no-repeat;
+          position: relative;
+          padding: 32px 32px 28px 32px;
+          border-radius: 12px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+          max-width: 98vw;
+          width: 600px;
+          text-align: center;
+          z-index: 2;
+        }
+        .anangpur-modal-content::before {
+          content: '';
+          position: absolute;
+          left: 0; top: 0; width: 100%; height: 100%;
+          background: rgba(0,35,82,0.7);
+          border-radius: 12px;
+          z-index: 1;
+        }
+        .anangpur-modal-content > * {
+          position: relative;
+          z-index: 2;
+        }
+        .anangpur-close {
+          position: absolute;
+          top: 10px; right: 16px;
+          font-size: 2rem;
+          color: #002352;
+          cursor: pointer;
+          font-weight: bold;
+        }
+        .anangpur-popup-actions {
+          display: flex;
+          flex-direction: row;
+          gap: 18px;
+          justify-content: center;
+          margin-top: 10px;
+        }
+        .anangpur-yt-btn {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          background: var(--saffron);
+          border-radius: 6px;
+          padding: 10px 22px;
+          font-weight: 600;
+          text-decoration: none;
+          color: var(--navy-blue);
+          border: none;
+          font-size: 1.08em;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+          transition: background 0.2s, color 0.2s;
+        }
+        .anangpur-yt-btn:hover {
+          background: var(--navy-blue);
+          color: var(--saffron);
+        }
+        .anangpur-insta-btn {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          background: transparent;
+          border-radius: 6px;
+          padding: 10px 22px;
+          font-weight: 600;
+          text-decoration: none;
+          color: var(--saffron);
+          border: 2px solid var(--saffron);
+          font-size: 1.08em;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+          transition: background 0.2s, color 0.2s;
+        }
+        .anangpur-insta-btn:hover {
+          background: var(--saffron);
+          color: var(--navy-blue);
+        }
+        .anangpur-modal-content {
+          color: #fff;
+        }
+        .anangpur-social-row {
+          display: flex;
+          justify-content: center;
+          gap: 18px;
+          margin-top: 18px;
+        }
+        .anangpur-social-row a {
+          color: #fff;
+          font-size: 2rem;
+          transition: color 0.2s;
+        }
+        .anangpur-social-row a:hover {
+          color: var(--saffron);
+        }
+        @media (max-width: 700px) {
+          .anangpur-modal-content { width: 98vw; padding: 18px 4vw; }
+          .anangpur-popup-actions { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="header-top">
+                <div class="logo">
+                    <img src="logo.png" alt="Gurjar Pragati Manch Logo">
+                </div>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="menu-overlay" id="menu-overlay"></div>
+            <nav id="main-nav">
+                <ul>
+                    <li>
+                        <a href="#" class="hindi lang-hindi active">होम</a>
+                        <a href="#" class="lang-english active" style="display:none;">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about" class="hindi lang-hindi">हमारे बारे में</a>
+                        <a href="#about" class="lang-english" style="display:none;">About Us</a>
+                    </li>
+                    <li>
+                        <a href="#history" class="hindi lang-hindi">इतिहास</a>
+                        <a href="#history" class="lang-english" style="display:none;">History</a>
+                    </li>
+                    <li>
+                        <a href="#youth" class="hindi lang-hindi">युवा</a>
+                        <a href="#youth" class="lang-english" style="display:none;">Youth</a>
+                    </li>
+                    <li>
+                        <a href="#latest-videos" class="hindi lang-hindi">वीडियो</a>
+                        <a href="#latest-videos" class="lang-english" style="display:none;">Videos</a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="hindi lang-hindi">संपर्क</a>
+                        <a href="#contact" class="lang-english" style="display:none;">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/gpmanch" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/gpmanch" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/gpmanch/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@gpmanch" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="language-switch">
+                    <button class="active hindi" id="btn-hindi">हिंदी</button> | 
+                    <button id="btn-english">English</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hindi lang-hindi">गौरवशाली इतिहास से प्रेरित, प्रगति की ओर एक कदम</h1>
+            <h1 class="lang-english" style="display:none;">Inspired by Glorious History, A Step Towards Progress</h1>
+            <p class="hindi lang-hindi">गुर्जर प्रगति मंच - एकता, शिक्षा और विकास की दिशा में आंदोलन</p>
+            <p class="lang-english" style="display:none;">Gurjar Pragati Manch - A movement towards unity, education, and development</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary hindi lang-hindi">हमसे जुड़ें</a>
+                <a href="https://www.youtube.com/@gpmanch" target="_blank" rel="noopener" class="btn btn-secondary hindi lang-hindi">हमारे वीडियो देखें</a>
+                <a href="#contact" class="btn btn-primary lang-english" style="display:none;">Join Us</a>
+                <a href="https://www.youtube.com/@gpmanch" target="_blank" rel="noopener" class="btn btn-secondary lang-english" style="display:none;">Watch Our Videos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="hindi lang-hindi">हमारे बारे में</h2>
+                <h2 class="lang-english" style="display:none;">About Us</h2>
+                <p class="hindi lang-hindi">गुर्जर समाज की प्रगति के लिए समर्पित संगठन</p>
+                <p class="lang-english" style="display:none;">An organization dedicated to the progress of the Gurjar community</p>
+            </div>
+            
+            <div class="about-cards">
+                <div class="card">
+                    <i class="fas fa-landmark"></i>
+                    <h3 class="hindi lang-hindi">इतिहास जागरूकता</h3>
+                    <h3 class="lang-english" style="display:none;">History Awareness</h3>
+                    <p class="hindi lang-hindi">हमारे गौरवशाली इतिहास को संरक्षित और प्रसारित करना</p>
+                    <p class="lang-english" style="display:none;">Preserving and spreading our glorious history</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3 class="hindi lang-hindi">युवा सशक्तिकरण</h3>
+                    <h3 class="lang-english" style="display:none;">Youth Empowerment</h3>
+                    <p class="hindi lang-hindi">युवाओं को शिक्षा और रोजगार के लिए प्रेरित करना</p>
+                    <p class="lang-english" style="display:none;">Inspiring youth for education and employment</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3 class="hindi lang-hindi">सामाजिक न्याय</h3>
+                    <h3 class="lang-english" style="display:none;">Social Justice</h3>
+                    <p class="hindi lang-hindi">समाज के हर वर्ग के अधिकारों के लिए संघर्ष</p>
+                    <p class="lang-english" style="display:none;">Fighting for the rights of every section of society</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section team">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="hindi lang-hindi">हमारी टीम</h2>
+                <h2 class="lang-english" style="display:none;">Our Team</h2>
+                <p class="hindi lang-hindi">समाज सेवा में समर्पित हमारे नेतृत्वकर्ता</p>
+                <p class="lang-english" style="display:none;">Our leaders dedicated to community service</p>
+            </div>
+            
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=400&h=400&facepad=2&q=80" alt="Team Member">
+                    <h3 class="hindi lang-hindi">राजेश गुर्जर</h3>
+                    <h3 class="lang-english" style="display:none;">Rajesh Gurjar</h3>
+                    <p class="hindi lang-hindi">संस्थापक अध्यक्ष</p>
+                    <p class="lang-english" style="display:none;">Founder President</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=facearea&w=400&h=400&facepad=2&q=80" alt="Team Member">
+                    <h3 class="hindi lang-hindi">सुनीता गुर्जर</h3>
+                    <h3 class="lang-english" style="display:none;">Sunita Gurjar</h3>
+                    <p class="hindi lang-hindi">महिला विंग प्रमुख</p>
+                    <p class="lang-english" style="display:none;">Head, Women Wing</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=400&h=400&facepad=2&q=80" alt="Team Member">
+                    <h3 class="hindi lang-hindi">विकास गुर्जर</h3>
+                    <h3 class="lang-english" style="display:none;">Vikas Gurjar</h3>
+                    <p class="hindi lang-hindi">युवा प्रकोष्ठ संयोजक</p>
+                    <p class="lang-english" style="display:none;">Youth Cell Coordinator</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="hindi lang-hindi">गुर्जर इतिहास</h2>
+                <h2 class="lang-english" style="display:none;">Gurjar History</h2>
+                <p class="hindi lang-hindi">प्राचीन काल से आधुनिक युग तक हमारी गौरव गाथा</p>
+                <p class="lang-english" style="display:none;">Our glorious journey from ancient times to the modern era</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="hindi lang-hindi">8वीं शताब्दी</h3>
+                        <h3 class="lang-english" style="display:none;">8th Century</h3>
+                        <p class="hindi lang-hindi">मिहिर भोज - गुर्जर प्रतिहार साम्राज्य का स्वर्ण युग</p>
+                        <p class="lang-english" style="display:none;">Mihir Bhoj - The golden era of Gurjar Pratihar Empire</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3 class="hindi lang-hindi">12वीं शताब्दी</h3>
+                        <h3 class="lang-english" style="display:none;">12th Century</h3>
+                        <p class="hindi lang-hindi">रानी नायकी देवी - मुहम्मद गोरी को पराजित किया</p>
+                        <p class="lang-english" style="display:none;">Queen Nayaki Devi - Defeated Muhammad Ghori</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="hindi lang-hindi">18वीं शताब्दी</h3>
+                        <h3 class="lang-english" style="display:none;">18th Century</h3>
+                        <p class="hindi lang-hindi">बप्पा रावल - मेवाड़ के महान योद्धा</p>
+                        <p class="lang-english" style="display:none;">Bappa Rawal - The great warrior of Mewar</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3 class="hindi lang-hindi">1857</h3>
+                        <h3 class="lang-english" style="display:none;">1857</h3>
+                        <p class="hindi lang-hindi">1857 की क्रांति में गुर्जरों का योगदान</p>
+                        <p class="lang-english" style="display:none;">Gurjars' contribution in the 1857 revolution</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3 class="hindi lang-hindi">वर्तमान</h3>
+                        <h3 class="lang-english" style="display:none;">Present</h3>
+                        <p class="hindi lang-hindi">आधुनिक भारत में गुर्जर समाज का विकास</p>
+                        <p class="lang-english" style="display:none;">Development of Gurjar community in modern India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Youth Empowerment -->
+    <section id="youth" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="hindi lang-hindi">युवा सशक्तिकरण</h2>
+                <h2 class="lang-english" style="display:none;">Youth Empowerment</h2>
+                <p class="hindi lang-hindi">हमारे युवाओं को सफलता के लिए तैयार करना</p>
+                <p class="lang-english" style="display:none;">Preparing our youth for success</p>
+            </div>
+            
+            <div class="initiatives">
+                <div class="initiative">
+                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Scholarship">
+                    <div class="initiative-content">
+                        <h3 class="hindi lang-hindi">छात्रवृत्ति कार्यक्रम</h3>
+                        <h3 class="lang-english" style="display:none;">Scholarship Program</h3>
+                        <p class="hindi lang-hindi">मेधावी छात्रों को वित्तीय सहायता</p>
+                        <p class="lang-english" style="display:none;">Financial support for meritorious students</p>
+                        <a href="#" class="hindi lang-hindi">और जानें →</a>
+                        <a href="#" class="lang-english" style="display:none;">Learn More →</a>
+                    </div>
+                </div>
+                
+                <div class="initiative">
+                    <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=400&q=80" alt="Coaching">
+                    <div class="initiative-content">
+                        <h3 class="hindi lang-hindi">कोचिंग सहायता</h3>
+                        <h3 class="lang-english" style="display:none;">Coaching Assistance</h3>
+                        <p class="hindi lang-hindi">UPSC, SSC और अन्य प्रतियोगी परीक्षाओं के लिए मार्गदर्शन</p>
+                        <p class="lang-english" style="display:none;">Guidance for UPSC, SSC and other competitive exams</p>
+                        <a href="#" class="hindi lang-hindi">और जानें →</a>
+                        <a href="#" class="lang-english" style="display:none;">Learn More →</a>
+                    </div>
+                </div>
+                
+                <div class="initiative">
+                    <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80" alt="Success Stories">
+                    <div class="initiative-content">
+                        <h3 class="hindi lang-hindi">सफलता की कहानियाँ</h3>
+                        <h3 class="lang-english" style="display:none;">Success Stories</h3>
+                        <p class="hindi lang-hindi">गुर्जर समाज के सफल युवाओं से प्रेरणा</p>
+                        <p class="lang-english" style="display:none;">Inspiration from successful youth of Gurjar community</p>
+                        <a href="#" class="hindi lang-hindi">और जानें →</a>
+                        <a href="#" class="lang-english" style="display:none;">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Instagram Reels Section -->
+    <section id="popular-instagram-reels" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="hindi lang-hindi">लोकप्रिय इंस्टाग्राम रील्स</h2>
+                <h2 class="lang-english" style="display:none;">Popular Instagram Reels</h2>
+                <p class="hindi lang-hindi">हमारी चर्चित इंस्टाग्राम रील्स देखें</p>
+                <p class="lang-english" style="display:none;">Watch our trending Instagram reels</p>
+            </div>
+            <div class="instagram-reels-row">
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DLq4orsyU3V/?hl=en" data-instgrm-version="14"></blockquote>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DLOX81fyI6V/?hl=en" data-instgrm-version="14"></blockquote>
+                <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DLUc-QMyjNR/?hl=en" data-instgrm-version="14"></blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Videos Section -->
+    <section id="latest-videos" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="hindi lang-hindi">नवीनतम वीडियो</h2>
+                <h2 class="lang-english" style="display:none;">Latest Videos</h2>
+                <p class="hindi lang-hindi">हमारे यूट्यूब चैनल के ताज़ा वीडियो देखें</p>
+                <p class="lang-english" style="display:none;">Watch the latest videos from our YouTube channel</p>
+            </div>
+            <div id="youtube-videos" style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="hindi lang-hindi">हमसे जुड़ें</h2>
+                <h2 class="lang-english" style="display:none;">Contact Us</h2>
+                <p class="hindi lang-hindi">समाज की प्रगति में अपना योगदान दें</p>
+                <p class="lang-english" style="display:none;">Contribute to the progress of the community</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 class="hindi lang-hindi">संपर्क जानकारी</h3>
+                    <h3 class="lang-english" style="display:none;">Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span class="hindi lang-hindi">गुर्जर भवन, दिल्ली रोड, मेरठ, उत्तर प्रदेश</span><span class="lang-english" style="display:none;">Gurjar Bhawan, Delhi Road, Meerut, Uttar Pradesh</span></p>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> contact@gurjarpragatimanch.org</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.facebook.com/gpmanch" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/gpmanch" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/gpmanch/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="आपका नाम" class="hindi lang-hindi" required>
+                        <input type="text" placeholder="Your Name" class="lang-english" style="display:none;" required>
+                        <input type="email" placeholder="आपका ईमेल" class="hindi lang-hindi" required>
+                        <input type="email" placeholder="Your Email" class="lang-english" style="display:none;" required>
+                        <input type="tel" placeholder="आपका फोन नंबर" class="hindi lang-hindi">
+                        <input type="tel" placeholder="Your Phone Number" class="lang-english" style="display:none;">
+                        <textarea rows="5" placeholder="आपका संदेश" class="hindi lang-hindi" required></textarea>
+                        <textarea rows="5" placeholder="Your Message" class="lang-english" style="display:none;" required></textarea>
+                        <button type="submit" class="hindi lang-hindi">संदेश भेजें</button>
+                        <button type="submit" class="lang-english" style="display:none;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3 class="hindi lang-hindi">गुर्जर प्रगति मंच</h3>
+                    <h3 class="lang-english" style="display:none;">Gurjar Pragati Manch</h3>
+                    <p class="hindi lang-hindi">समाज की प्रगति के लिए समर्पित</p>
+                    <p class="lang-english" style="display:none;">Dedicated to the progress of the community</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="hindi lang-hindi">त्वरित लिंक</h3>
+                    <h3 class="lang-english" style="display:none;">Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="hindi lang-hindi">होम</a><a href="#" class="lang-english" style="display:none;">Home</a></li>
+                        <li><a href="#about" class="hindi lang-hindi">हमारे बारे में</a><a href="#about" class="lang-english" style="display:none;">About Us</a></li>
+                        <li><a href="#history" class="hindi lang-hindi">इतिहास</a><a href="#history" class="lang-english" style="display:none;">History</a></li>
+                        <li><a href="#youth" class="hindi lang-hindi">युवा</a><a href="#youth" class="lang-english" style="display:none;">Youth</a></li>
+                        <li><a href="#contact" class="hindi lang-hindi">संपर्क</a><a href="#contact" class="lang-english" style="display:none;">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="hindi lang-hindi">हमारे कार्यक्रम</h3>
+                    <h3 class="lang-english" style="display:none;">Our Programs</h3>
+                    <ul>
+                        <li><a href="#" class="hindi lang-hindi">छात्रवृत्ति</a><a href="#" class="lang-english" style="display:none;">Scholarship</a></li>
+                        <li><a href="#" class="hindi lang-hindi">युवा प्रशिक्षण</a><a href="#" class="lang-english" style="display:none;">Youth Training</a></li>
+                        <li><a href="#" class="hindi lang-hindi">इतिहास संरक्षण</a><a href="#" class="lang-english" style="display:none;">History Preservation</a></li>
+                        <li><a href="#" class="hindi lang-hindi">सामाजिक जागरूकता</a><a href="#" class="lang-english" style="display:none;">Social Awareness</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="hindi lang-hindi">सोशल मीडिया</h3>
+                    <h3 class="lang-english" style="display:none;">Social Media</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/gpmanch" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/gpmanch" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/gpmanch/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@gpmanch" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p class="hindi lang-hindi">© 2023 गुर्जर प्रगति मंच | सर्वाधिकार सुरक्षित</p>
+                <p class="lang-english" style="display:none;">© 2023 Gurjar Pragati Manch | All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Save Anangpur Popup Modal -->
+    <div id="anangpur-popup" class="anangpur-modal" style="display:none;">
+      <div class="anangpur-modal-content">
+        <span class="anangpur-close" id="anangpur-close">&times;</span>
+        <div class="anangpur-popup-text hindi" style="margin-bottom: 18px;">
+          <div style="font-size:1.3em;font-weight:700;margin-bottom:10px;">🛑 Save Anangpur – हमारे इतिहास को मिटने से बचाओ!</div>
+          <div style="margin-bottom:10px;">अनंगपुर गांव, गुर्जर समाज की ऐतिहासिक पहचान और सांस्कृतिक विरासत का प्रतीक है।<br>आज ये गांव राजनीतिक षड्यंत्रों, भू-माफियाओं, और प्रशासनिक उपेक्षा का शिकार बन रहा है।</div>
+          <div style="margin-bottom:10px;">
+            🚨 अब समय है आवाज़ उठाने का!<br>
+            ✊ इतिहास को मिटने नहीं देंगे<br>
+            ✊ अपनी जड़ों की रक्षा करेंगे<br>
+            ✊ गुर्जर समाज की एकता दिखाएंगे
+          </div>
+          <div style="margin-bottom:18px;">
+            📢 इस आंदोलन का हिस्सा बनिए – अपने गांव, अपनी पहचान, और अपने गौरव को बचाइए।
+          </div>
+        </div>
+        <div class="anangpur-popup-actions">
+          <a href="https://www.youtube.com/@gpmanch?sub_confirmation=1" target="_blank" rel="noopener" class="anangpur-yt-btn">Support Now</a>
+          <a href="https://whatsapp.com/channel/0029VbAJCcY6LwHgEOjs802e" target="_blank" rel="noopener" class="anangpur-insta-btn">Join the Movement</a>
+        </div>
+        <div class="anangpur-social-row">
+          <a href="https://www.youtube.com/@gpmanch" target="_blank" rel="noopener" title="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/gpmanch/" target="_blank" rel="noopener" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/gpmanch" target="_blank" rel="noopener" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/gpmanch" target="_blank" rel="noopener" title="X (Twitter)"><i class="fab fa-twitter"></i></a>
+          <a href="https://t.me/gpmanch" target="_blank" rel="noopener" title="Telegram"><i class="fab fa-telegram"></i></a>
+          <a href="https://wa.me/919876543210" target="_blank" rel="noopener" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+</body>
+<script>
+// Language Switcher Functionality
+const btnHindi = document.getElementById('btn-hindi');
+const btnEnglish = document.getElementById('btn-english');
+
+function setLanguage(lang) {
+    // Toggle active button
+    if(lang === 'hindi') {
+        btnHindi.classList.add('active');
+        btnEnglish.classList.remove('active');
+    } else {
+        btnHindi.classList.remove('active');
+        btnEnglish.classList.add('active');
+    }
+    // Show/hide content
+    document.querySelectorAll('.lang-hindi').forEach(el => {
+        el.style.display = (lang === 'hindi') ? '' : 'none';
+    });
+    document.querySelectorAll('.lang-english').forEach(el => {
+        el.style.display = (lang === 'english') ? '' : 'none';
+    });
+    // Update nav active state for visible language
+    updateNavActive();
+}
+
+btnHindi.addEventListener('click', () => setLanguage('hindi'));
+btnEnglish.addEventListener('click', () => setLanguage('english'));
+
+// Nav active state logic
+let currentNavIndex = 0; // Default to first menu item
+
+function updateNavActive() {
+    // Remove active from all nav links
+    document.querySelectorAll('nav ul li a').forEach(link => link.classList.remove('active'));
+    // Add active to the current index for both languages
+    const navItems = document.querySelectorAll('nav ul li');
+    if (navItems[currentNavIndex]) {
+        navItems[currentNavIndex].querySelectorAll('a').forEach(link => link.classList.add('active'));
+    }
+}
+
+document.querySelectorAll('nav ul li').forEach((li, idx) => {
+    li.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Only handle visible link
+            if (this.style.display === 'none') return;
+            currentNavIndex = idx;
+            updateNavActive();
+        });
+    });
+});
+
+// Initialize nav active state
+updateNavActive();
+// Set default language to English on page load
+setLanguage('english');
+
+// Hamburger menu functionality
+const hamburger = document.getElementById('hamburger');
+const navUl = document.querySelector('nav ul');
+const menuOverlay = document.getElementById('menu-overlay');
+
+hamburger.addEventListener('click', function() {
+    navUl.classList.toggle('open');
+    menuOverlay.classList.toggle('open');
+});
+// Close menu on nav link click (mobile)
+document.querySelectorAll('nav ul li a').forEach(link => {
+    link.addEventListener('click', function() {
+        if(window.innerWidth <= 768) {
+            navUl.classList.remove('open');
+            menuOverlay.classList.remove('open');
+        }
+    });
+});
+// Close menu when clicking overlay
+menuOverlay.addEventListener('click', function() {
+    navUl.classList.remove('open');
+    menuOverlay.classList.remove('open');
+});
+
+// YouTube Latest Videos Section (No API key, uses rss2json)
+(function() {
+    const channelId = 'UCqEbnUlqW5SFheI_mvwxiIQ';
+    const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+    const container = document.getElementById('youtube-videos');
+    if (!container) return;
+    fetch(apiUrl)
+        .then(res => res.json())
+        .then(data => {
+            if (!data.items) return;
+            const videos = data.items.filter(item => item.link.includes('watch')).slice(0, 3);
+            container.innerHTML = videos.map(video => {
+                // Get video ID from link
+                const videoId = video.link.split('v=')[1];
+                return `
+                    <div style="max-width:350px;width:100%;">
+                        <div style='position:relative;padding-bottom:56.25%;height:0;overflow:hidden;'>
+                            <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen style='position:absolute;top:0;left:0;width:100%;height:100%;'></iframe>
+                        </div>
+                        <div style='margin-top:10px;font-weight:600;'>${video.title}</div>
+                    </div>
+                `;
+            }).join('');
+        });
+})();
+
+// News Section: Fetch and display latest Gurjar/Gujjar news
+// Remove News JS
+// Show Save Anangpur popup on page load
+window.addEventListener('DOMContentLoaded', function() {
+  var popup = document.getElementById('anangpur-popup');
+  var closeBtn = document.getElementById('anangpur-close');
+  if (popup && closeBtn) {
+    popup.style.display = 'flex';
+    closeBtn.onclick = function() { popup.style.display = 'none'; };
+    // Optional: close on outside click
+    popup.onclick = function(e) {
+      if (e.target === popup) popup.style.display = 'none';
+    };
+  }
+});
+</script>
+<script async src="https://www.instagram.com/embed.js"></script>
+<script>
+// Ensure Instagram embeds render after DOM load
+window.addEventListener('DOMContentLoaded', function() {
+  if (window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process === 'function') {
+    window.instgrm.Embeds.process();
+  }
+});
+</script>
+</html>
